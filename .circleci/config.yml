@@ -10,7 +10,8 @@ jobs:
       - image: circleci/python:3.9.7
 
     steps:
-      - checkout
+      - checkout: .
+
       - restore_cache:
           keys:
             - deps-{{ checksum "poetry.lock" }}
