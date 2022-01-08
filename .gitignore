@@ -1,3 +1,8 @@
 /.coverage*
 /.idea/
 *.pyc
+/.junit.xml
+/.mypy.xml
+/mypyhtml/
+/htmlcov/
+/.mypy_cache/

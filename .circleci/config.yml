@@ -30,16 +30,43 @@ jobs:
           name: Run flake8
           command: |
             poetry run flake8 .
+          when: always
 
       - run:
           name: Run mypy
           command: |
-            poetry run mypy -m apscheduler_sqlmodel_jobstore
+            poetry run mypy -m apscheduler_sqlmodel_jobstore --junit-xml .mypy.xml --html-report mypyhtml
+          when: always
 
       - run:
           name: Run Pytest, report coverage
-          command: |
-            poetry run coverage run --omit="/home/circleci/.cache/pypoetry/virtualenvs" --branch -m pytest
+          command: >
+            poetry run coverage
+              run --omit="/home/circleci/.cache/pypoetry/virtualenvs"
+              --branch
+              -m pytest
+              --junit-xml=.junit.xml
+          when: always
+
+      - run:
+          name: Generate HTML coverage report
+          command: >
+            poetry run coverage html
+          when: always
+
+      - store_test_results:
+          path: .junit.xml
+
+      - store_test_results:
+          path: .mypy.xml
+
+      - store_artifacts:
+          path: htmlcov
+          destination: coverage
+
+      - store_artifacts:
+          path: mypyhtml
+          destination: mypy
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
