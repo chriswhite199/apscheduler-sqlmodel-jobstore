@@ -16,6 +16,7 @@ coverage = { extras = ["toml"], version = "^6.2" }
 pre-commit = "^2.16.0"
 pytest-cov = "^3.0.0"
 flake8 = "^4.0.1"
+lxml = "^4.7.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -24,3 +25,6 @@ build-backend = "poetry.core.masonry.api"
 [tool.pytest]
 log_cli = false
 log_level = 'INFO'
+
+[tool.mypy]
+ignore_missing_imports = true
