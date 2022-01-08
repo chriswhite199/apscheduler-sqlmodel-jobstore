@@ -20,7 +20,7 @@ from sqlmodel import SQLModel
 
 class BaseJobModel(SQLModel):
     id: str = Field(primary_key=True)
-    next_run_time: datetime = (Field(index=True),)
+    next_run_time: datetime = Field(index=True)
     job_state: bytes = Field(nullable=False, index=False)
 
 

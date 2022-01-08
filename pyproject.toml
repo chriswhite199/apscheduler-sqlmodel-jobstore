@@ -25,3 +25,6 @@ build-backend = "poetry.core.masonry.api"
 [tool.pytest]
 log_cli = false
 log_level = 'INFO'
+
+[tool.mypy]
+ignore_missing_imports = true
