@@ -29,17 +29,17 @@ jobs:
 
       - run:
           name: Run flake8
-          command: flake8.sh
+          command: bash -c flake8.sh
           when: always
 
       - run:
           name: Run mypy
-          command: mypy.sh
+          command: bash -c mypy.sh
           when: always
 
       - run:
           name: Run Pytest, report coverage
-          command: test.sh
+          command: bash -c test.sh
           when: always
 
       - run:
