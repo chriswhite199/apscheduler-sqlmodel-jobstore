@@ -40,17 +40,17 @@ jobs:
 
       - run:
           name: Run Pytest, report coverage
-          command: >
-            poetry run coverage
-              run --omit="/home/circleci/.cache/pypoetry/virtualenvs"
-              --branch
-              -m pytest
+          command: |
+            poetry run coverage \
+              run --omit="/home/circleci/.cache/pypoetry/virtualenvs" \
+              --branch \
+              -m pytest \
               --junit-xml=.junit.xml
           when: always
 
       - run:
           name: Generate HTML coverage report
-          command: >
+          command: |
             poetry run coverage html
           when: always
 
