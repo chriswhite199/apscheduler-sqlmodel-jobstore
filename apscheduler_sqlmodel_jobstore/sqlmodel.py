@@ -1,6 +1,7 @@
 import pickle
 from datetime import datetime
 from typing import Optional
+from typing import Type
 
 from apscheduler.job import Job
 from apscheduler.jobstores.base import BaseJobStore
@@ -32,7 +33,7 @@ class SQLModelJobStore(BaseJobStore):
     def __init__(self,
                  engine: Engine,
                  pickle_protocol=pickle.HIGHEST_PROTOCOL,
-                 model_clz: BaseJobModel = JobModel) -> None:
+                 model_clz: Type[BaseJobModel] = JobModel) -> None:
         super().__init__()
         self.engine = engine
         self.pickle_protocol = pickle_protocol
