@@ -10,16 +10,17 @@ jobs:
       - image: circleci/python:3.9.7
 
     steps:
-      - checkout: .
+      - checkout
 
       - restore_cache:
           keys:
             - deps-{{ checksum "poetry.lock" }}
 
-            - run:
-                name: Install Dependencies
-                command: |
-                  poetry install
+      - run:
+          name: Install Dependencies
+          command: |
+            poetry install
+
       - save_cache:
           key: deps-{{ checksum "poetry.lock" }}
           paths:
